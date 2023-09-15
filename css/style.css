@@ -1,8 +1,35 @@
+/* RESET START */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
+button,
+input {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input {
+  padding: 2px 8px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* RESET END */
 
 :root {
   /* note 
@@ -10,23 +37,29 @@
   */
   --color-light-1: #fff;
 
-  --color-secondary: rgb(95, 95, 255);
+  --color-secondary: #5f5fff;
   --color-secondary-c: #ffffff;
+
+  --box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+
+
+/* Material Symbols modification */
+.material-symbols-outlined {
+  font-size: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* LAYOUT START*/
 
 .container {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 250px minmax(300px, 1fr) 250px;
+  grid-template-columns: 250px minmax(300px, 1fr) 300px;
   grid-template-rows: min-content 1fr;
 }
 
-/* helper - deleted soon*/
-.container>* {
-  border: 1px solid black;
-}
-
-/* layout */
 .leftbar {
   grid-column: 1;
   grid-row: 1/-1;
@@ -36,17 +69,124 @@
   grid-column: 2 / -1;
 }
 
-/* leftbar */
+.main,
+.rightbar {
+  background-color: #f2f1f1;
+  padding: 16px;
+}
+
+/*    leftbar */
 .leftbar {
   background-color: var(--color-secondary);
   color: var(--color-secondary-c);
-
+  position: sticky;
+  top: 0;
   display: grid;
   gap: 48px;
   grid-auto-rows: min-content;
 }
 
-/* Components */
+/*    Header */
+.header {
+  padding: 32px 32px;
+
+  display: grid;
+  grid-auto-flow: row;
+  gap: 16px;
+}
+
+
+.header>div {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*      first row */
+.header>div:nth-child(1) {
+  display: flex;
+  gap: 48px;
+}
+
+.header>div:nth-child(1)>:nth-child(1) {
+  flex: 1;
+
+  display: flex;
+  gap: 8px;
+}
+
+.searchbar input[type='search'] {
+  width: min(700px, 100%);
+  background-color: rgba(194, 194, 194, 0.497);
+  border-radius: 25px;
+  border: none;
+}
+
+
+/*    Righbar Start*/
+.rightbar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/*      announcements part */
+.announcements>.board__content>div {
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  font-size: 80%;
+
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.content__title {
+  font-weight: 700;
+  font-size: 120%;
+}
+
+.content__body {
+  color: #505050;
+}
+
+.trending>.board__content>div {
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+}
+
+/*    Righbar End*/
+/* LAYOUT END*/
+
+
+
+/* UTILS START*/
+.round {
+  border-radius: 50%;
+  border: 1px solid black;
+  aspect-ratio: 1 / 1;
+  /* height: auto; */
+  overflow: hidden;
+}
+
+.center {
+  display: grid;
+  place-content: center;
+}
+
+/* UTILS END*/
+
+
+/* COMPONENTS START*/
 
 .brand {
   padding: 8px 16px;
@@ -57,7 +197,7 @@
   gap: 16px;
 }
 
-/*    nav */
+/*    Nav Start*/
 .navbar {
   display: grid;
   font-weight: 600;
@@ -78,7 +218,15 @@
   background-color: #00000014;
 }
 
-/*    text-icon */
+/*    Nav End*/
+
+/*    text-icon Start*/
+.icons-container {
+  display: flex;
+  gap: 8px;
+  font-size: 24px;
+}
+
 .text-icon {
   display: flex;
   gap: 16px;
@@ -86,5 +234,123 @@
 }
 
 .icon {
-  width: 20px;
+  /* width: 20px; */
+  aspect-ratio: 1 / 1;
+  height: auto;
 }
+
+
+.iconAndProfile {
+  height: 30px;
+  display: flex;
+  gap: 16px;
+}
+
+/*    text-icon End*/
+
+
+/*    Button Start */
+.button {
+  padding: 4px 16px;
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-c);
+  border: none;
+  border-radius: 16px;
+  ;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #8d8dfe;
+}
+
+.button:active {
+  background-color: #2f2fff;
+}
+
+/*    Button End */
+
+
+/*    Board Container Start */
+.board__title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+/*    Board Container End */
+
+/*    Card Start*/
+.cards_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background-color: #fff;
+  border-left: 8px solid orange;
+  border-radius: 6px;
+  box-shadow: var(--box-shadow);
+  min-height: 200px;
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 24px;
+  height: 100%;
+}
+
+.card__body {
+  flex: 1;
+}
+
+.card__footer {
+  height: min-content;
+}
+
+.card__title {
+  font-weight: 700;
+}
+
+.card .buttons_container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  font-size: 150%;
+}
+
+/*    Card End*/
+
+/*    Profile Start*/
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile__photo {
+  aspect-ratio: 1 / 1;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile__photo img {
+  width: 100%;
+}
+
+.profile_title {
+  font-weight: 600;
+}
+
+.profile__subtitle {
+  color: #7a7a7a;
+}
+
+/*    Profile End*/
+
+/* COMPONENTS END*/
